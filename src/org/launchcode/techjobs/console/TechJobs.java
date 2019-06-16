@@ -60,8 +60,12 @@ public class TechJobs {
                 System.out.println("\nSearch term: ");
                 String searchTerm = in.nextLine();
 
-                if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+                if (searchField.equals("all") || searchField.equals("position type")
+                || searchField.equals("employer") || searchField.equals("location")
+                || searchField.equals("core competency")) {
+                    // System.out.println("Search all fields is being implemented now.");
+                    printAllJobs(JobData.findByValue(searchTerm));
+
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -69,7 +73,7 @@ public class TechJobs {
         }
     }
 
-    // ﻿Returns the key of the selected item from the choices Dictionary
+    // ?Returns the key of the selected item from the choices Dictionary
     private static String getUserSelection(String menuHeader, HashMap<String, String> choices) {
 
         Integer choiceIdx;
@@ -111,6 +115,52 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+        // if(someJobs.size() > 0) {
+
+            for (HashMap<String, String> row : someJobs) {
+                System.out.println("*****");
+                for (String i : row.keySet()) {
+                    System.out.println(i + ": " + row.get(i));
+                }
+                System.out.println("*****");
+            }
+            // End for loop for printJobs method.
+
+       // }
+        // End the if statement of someJobs.size().
+
+        if(someJobs.size() < 1) {
+            System.out.println("No results available");
+        }
+
+
+
+
     }
+
+
+
+
+
+    // Print a list of jobs
+    private static void printAllJobs(ArrayList<HashMap<String, String>> someJobs) {
+
+        if( someJobs.size() < 1 ) {
+            System.out.println("No Job Results Available");
+        }
+        // System.out.println("Size of someJobs: " + someJobs.size());
+        /*
+        for (HashMap<String, String> row : someJobs) {
+                System.out.println("*****");
+                for (String i : row.keySet()) {
+                    System.out.println(i + ": " + row.get(i));
+                }
+                System.out.println("*****");
+        }
+        */
+
+    }
+
+
+
 }

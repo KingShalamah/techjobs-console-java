@@ -62,7 +62,7 @@ public class JobData {
      * with "Enterprise Holdings, Inc".
      *
      * @param column   Column that should be searched.
-     * @param value Value of teh field to search for
+     * @param value Value of the field to search for
      * @return List of all jobs matching the criteria
      */
     public static ArrayList<HashMap<String, String>> findByColumnAndValue(String column, String value) {
@@ -124,5 +124,46 @@ public class JobData {
             e.printStackTrace();
         }
     }
+
+
+
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+
+        // load data, if not already loaded
+        loadData();
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+
+            for (String h : row.keySet()) {
+                String irow = row.get(h).toLowerCase();
+                String ivalue = value.toLowerCase();
+
+                if( irow.contains(ivalue) ) {
+                    System.out.println("*****");
+
+                    for (String i : row.keySet()) {
+                        System.out.println(i + ": " + row.get(i));
+                    }
+
+                    System.out.println("*****");
+                    System.out.println("");
+                    jobs.add(row);
+                    break;
+                }
+                // End if statement.
+
+
+            }
+            // End for String h loop.
+        }
+
+        return jobs;
+    }
+    // End findByValue method.
+
+
+
 
 }
